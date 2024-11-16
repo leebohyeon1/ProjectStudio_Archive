@@ -94,4 +94,4 @@ public class Singleton_ClassVer<T> : MonoBehaviour where T : MonoBehaviour
             _applicationQuitting = true;
         }
     }
-}
+}sadasd
