@@ -6,6 +6,7 @@ using UnityEngine;
 /// 이 싱글톤 클래스를 상속하여 싱글톤을 만들 수 있습니다.
 /// 사용 시 클래스 이름을 변경하여 사용하는 것을 추천합니다 (예: Singleton_ClassVer -> Singleton).
 /// 사용 방법: public class MyClassName : Singleton<MyClassName> {}
+/// 이 코드를 사용 시 싱글톤 오브젝트가 없더라도 호출 시 즉시 오브젝트를 생성한다.
 /// </summary>
 public class Singleton_ClassVer<T> : MonoBehaviour where T : MonoBehaviour
 {
