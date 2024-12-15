@@ -33,10 +33,6 @@ public class ScreenOption : MonoBehaviour
     private int _frameRateIndex;
     private int _screenModeIndex;
 
-    // 저장 및 리셋 버튼
-    [SerializeField] private Button _saveBtn;
-    [SerializeField] private Button _resetBtn;
-
     //==========================================================
 
     void Start()
@@ -49,10 +45,6 @@ public class ScreenOption : MonoBehaviour
         // 초기 설정값 적용
         SetInitialResolution();
         SaveOption();
-
-        // 버튼 클릭 이벤트 추가
-        _saveBtn.onClick.AddListener(() => { SaveBtn(); });
-        _resetBtn.onClick.AddListener(() => { ResetBtn(); });
     }
     //==========================================================
 
@@ -208,26 +200,10 @@ public class ScreenOption : MonoBehaviour
 
     #endregion
 
-    #region 버튼
-
-    // 저장 버튼 클릭 시 호출
-    public void SaveBtn()
-    {
-        SaveOption();
-    }
-
-    // 리셋 버튼 클릭 시 호출
-    public void ResetBtn()
-    {
-        ResetOption();
-    }
-
-    #endregion
-
     //==========================================================
 
     // 옵션 저장
-    void SaveOption()
+    public void SaveOption()
     {
         PlayerPrefs.SetInt("resolution", _resolutionIndex);
         PlayerPrefs.SetInt("frameRate", _frameRateIndex);
@@ -236,7 +212,7 @@ public class ScreenOption : MonoBehaviour
     }
 
     // 옵션 리셋
-    void ResetOption()
+    public void ResetOption()
     {
         _resolutionIndex = PlayerPrefs.GetInt("resolution");
         _frameRateIndex = PlayerPrefs.GetInt("frameRate");
