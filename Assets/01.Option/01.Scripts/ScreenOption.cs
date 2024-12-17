@@ -6,29 +6,29 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// È­¸é ¼³Á¤À» °ü¸®ÇÏ´Â Å¬·¡½º
-/// ÇØ»óµµ, ÇÁ·¹ÀÓ ·¹ÀÌÆ®, È­¸é ¸ðµå µîÀ» ¼³Á¤ÇÒ ¼ö ÀÖ´Â ±â´É Æ÷ÇÔ
-/// ÀúÀåÀÇ °æ¿ì ÇöÀç´Â ÇÃ·¹ÀÌ¾îÇÁ¸®ÆÕÀ» »ç¿ëÇÏ°í ÀÖÀ½
+/// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+/// ï¿½Ø»ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®, È­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class ScreenOption : MonoBehaviour
 {
-    // ÇØ»óµµ µå·Ó´Ù¿î
+    // ï¿½Ø»ï¿½ ï¿½ï¿½Ó´Ù¿ï¿½
     [SerializeField] private TMP_Dropdown _resolutionDropdown;
-    private List<Resolution> _uniqueResolutions; // °íÀ¯ÇÑ ÇØ»óµµ ¸®½ºÆ®
+    private List<Resolution> _uniqueResolutions; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 
-    // ÇÁ·¹ÀÓ ·¹ÀÌÆ® µå·Ó´Ù¿î
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Ó´Ù¿ï¿½
     [SerializeField] private TMP_Dropdown _frameRateDropdown;
-    private readonly List<int> _frameRates = new List<int> { 30, 45, 60, 75, 120, 144, 240 }; // ¼³Á¤ °¡´ÉÇÑ ÇÁ·¹ÀÓ ·¹ÀÌÆ® ¸®½ºÆ®
+    private readonly List<int> _frameRates = new List<int> { 30, 45, 60, 75, 120, 144, 240 }; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ®
 
-    // È­¸é ¸ðµå µå·Ó´Ù¿î
+    // È­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ó´Ù¿ï¿½
     [SerializeField] private TMP_Dropdown _screenModeDropdown;
     public enum ScreenMode
     {
-        _fullScreenWindow = 0, // ÀüÃ¼ È­¸é ¸ðµå
-        _window = 1            // Ã¢ ¸ðµå
+        _fullScreenWindow = 0, // ï¿½ï¿½Ã¼ È­ï¿½ï¿½ ï¿½ï¿½ï¿½
+        _window = 1            // Ã¢ ï¿½ï¿½ï¿½
     }
 
-    // »ç¿ëÀÚ ¼³Á¤°ªÀÇ ÀÎµ¦½º ÀúÀå º¯¼ö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private int _resolutionIndex;
     private int _frameRateIndex;
     private int _screenModeIndex;
@@ -37,28 +37,28 @@ public class ScreenOption : MonoBehaviour
 
     void Start()
     {
-        // °¢ µå·Ó´Ù¿î ÃÊ±âÈ­
+        // ï¿½ï¿½ ï¿½ï¿½Ó´Ù¿ï¿½ ï¿½Ê±ï¿½È­
         ClearResolution();
         ClearFrame();
         ClearScreenMode();
 
-        // ÃÊ±â ¼³Á¤°ª Àû¿ë
+        // ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         SetInitialResolution();
         SaveOption();
     }
     //==========================================================
 
-    #region ÇØ»óµµ ¼³Á¤
+    #region ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    // ÇØ»óµµ µå·Ó´Ù¿î ÃÊ±âÈ­
+    // ï¿½Ø»ï¿½ ï¿½ï¿½Ó´Ù¿ï¿½ ï¿½Ê±ï¿½È­
     void ClearResolution()
     {
-        Resolution[] allResolutions = Screen.resolutions; // »ç¿ë °¡´ÉÇÑ ¸ðµç ÇØ»óµµ °¡Á®¿À±â
-        _uniqueResolutions = allResolutions.Distinct(new ResolutionComparer()).ToList(); // Áßº¹ Á¦°Å ÈÄ ¸®½ºÆ®·Î º¯È¯
-        _resolutionDropdown.ClearOptions(); // ±âÁ¸ ¿É¼Ç Á¦°Å
+        Resolution[] allResolutions = Screen.resolutions; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        _uniqueResolutions = allResolutions.Distinct(new ResolutionComparer()).ToList(); // ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È¯
+        _resolutionDropdown.ClearOptions(); // ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        List<string> resolutionOptions = new List<string>(); // µå·Ó´Ù¿î¿¡ Ãß°¡ÇÒ ÇØ»óµµ ¿É¼Ç ¸®½ºÆ®
-        int currentResolutionIndex = 0; // ÇöÀç ÇØ»óµµÀÇ ÀÎµ¦½º ÀúÀå
+        List<string> resolutionOptions = new List<string>(); // ï¿½ï¿½Ó´Ù¿î¿¡ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+        int currentResolutionIndex = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         for (int i = 0; i < _uniqueResolutions.Count; i++)
         {
@@ -68,34 +68,34 @@ public class ScreenOption : MonoBehaviour
             if (_uniqueResolutions[i].width == Screen.currentResolution.width &&
                 _uniqueResolutions[i].height == Screen.currentResolution.height)
             {
-                currentResolutionIndex = i; // ÇöÀç ÇØ»óµµ¸¦ ÀÎµ¦½º·Î ÀúÀå
+                currentResolutionIndex = i; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»óµµ¸ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
         }
 
-        _resolutionDropdown.AddOptions(resolutionOptions); // ÇØ»óµµ ¿É¼Ç Ãß°¡
-        _resolutionDropdown.value = PlayerPrefs.GetInt("resolution", currentResolutionIndex); // ÀúÀåµÈ ÇØ»óµµ °ª ·Îµå
-        _resolutionDropdown.RefreshShownValue(); // µå·Ó´Ù¿î °»½Å
+        _resolutionDropdown.AddOptions(resolutionOptions); // ï¿½Ø»ï¿½ ï¿½É¼ï¿½ ï¿½ß°ï¿½
+        _resolutionDropdown.value = PlayerPrefs.GetInt("resolution", currentResolutionIndex); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ ï¿½Îµï¿½
+        _resolutionDropdown.RefreshShownValue(); // ï¿½ï¿½Ó´Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // µå·Ó´Ù¿î °ª º¯°æ ½Ã ÀÌº¥Æ® Ãß°¡
+        // ï¿½ï¿½Ó´Ù¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ß°ï¿½
         _resolutionDropdown.onValueChanged.AddListener(SetResolution);
     }
 
-    // ÇØ»óµµ ¼³Á¤
+    // ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = _uniqueResolutions[resolutionIndex];
         this._resolutionIndex = resolutionIndex;
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen); // ÇØ»óµµ Àû¿ë
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen); // ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
-    // ÃÊ±â ÇØ»óµµ ¼³Á¤
+    // ï¿½Ê±ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void SetInitialResolution()
     {
         int savedResolutionIndex = PlayerPrefs.GetInt("resolution", -1);
 
         if (savedResolutionIndex == -1)
         {
-            // ÀúÀåµÈ °ªÀÌ ¾øÀ» °æ¿ì ÇöÀç ¸ð´ÏÅÍ ÇØ»óµµ·Î ¼³Á¤
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»óµµ·ï¿½ ï¿½ï¿½ï¿½ï¿½
             Resolution currentResolution = Screen.currentResolution;
             Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
 
@@ -110,16 +110,16 @@ public class ScreenOption : MonoBehaviour
         }
         else
         {
-            // ÀúÀåµÈ °ªÀÌ ÀÖÀ» °æ¿ì ÇØ´ç °ªÀ¸·Î ¼³Á¤
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             SetResolution(savedResolutionIndex);
         }
     }
 
     #endregion
 
-    #region ÇÁ·¹ÀÓ ·¹ÀÌÆ® ¼³Á¤
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
-    // ÇÁ·¹ÀÓ ·¹ÀÌÆ® µå·Ó´Ù¿î ÃÊ±âÈ­
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Ó´Ù¿ï¿½ ï¿½Ê±ï¿½È­
     void ClearFrame()
     {
         _frameRateDropdown.ClearOptions();
@@ -129,32 +129,32 @@ public class ScreenOption : MonoBehaviour
         int savedFrameRateIndex = PlayerPrefs.GetInt("frameRate", -1);
         if (savedFrameRateIndex == -1)
         {
-            savedFrameRateIndex = _frameRates.IndexOf(60); // ±âº»°ª: 60 FPS
+            savedFrameRateIndex = _frameRates.IndexOf(60); // ï¿½âº»ï¿½ï¿½: 60 FPS
             _frameRateIndex = savedFrameRateIndex;
         }
 
         _frameRateDropdown.value = savedFrameRateIndex;
         _frameRateDropdown.RefreshShownValue();
 
-        // µå·Ó´Ù¿î °ª º¯°æ ½Ã ÀÌº¥Æ® Ãß°¡
+        // ï¿½ï¿½Ó´Ù¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ß°ï¿½
         _frameRateDropdown.onValueChanged.AddListener(SetFrameRate);
 
         SetFrameRate(savedFrameRateIndex);
     }
 
-    // ÇÁ·¹ÀÓ ·¹ÀÌÆ® ¼³Á¤
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     public void SetFrameRate(int frameRateIndex)
     {
         int frameRate = _frameRates[frameRateIndex];
         this._frameRateIndex = frameRateIndex;
-        Application.targetFrameRate = frameRate; // ÇÁ·¹ÀÓ ·¹ÀÌÆ® Àû¿ë
+        Application.targetFrameRate = frameRate; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     }
 
     #endregion
 
-    #region È­¸é ¸ðµå ¼³Á¤
+    #region È­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-    // È­¸é ¸ðµå µå·Ó´Ù¿î ÃÊ±âÈ­
+    // È­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ó´Ù¿ï¿½ ï¿½Ê±ï¿½È­
     void ClearScreenMode()
     {
         List<string> options = new List<string> { "FullScreen", "WindowScreen" };
@@ -182,7 +182,7 @@ public class ScreenOption : MonoBehaviour
         }
     }
 
-    // È­¸é ¸ðµå º¯°æ
+    // È­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private void ChangeFullScreenMode(ScreenMode mode)
     {
         switch (mode)
@@ -202,7 +202,7 @@ public class ScreenOption : MonoBehaviour
 
     //==========================================================
 
-    // ¿É¼Ç ÀúÀå
+    // ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void SaveOption()
     {
         PlayerPrefs.SetInt("resolution", _resolutionIndex);
@@ -211,7 +211,7 @@ public class ScreenOption : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // ¿É¼Ç ¸®¼Â
+    // ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void ResetOption()
     {
         _resolutionIndex = PlayerPrefs.GetInt("resolution");
@@ -231,7 +231,7 @@ public class ScreenOption : MonoBehaviour
 
 //==========================================================
 
-// ÇØ»óµµ ºñ±³ Å¬·¡½º
+// ï¿½Ø»ï¿½ ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 public class ResolutionComparer : IEqualityComparer<Resolution>
 {
     public bool Equals(Resolution x, Resolution y)

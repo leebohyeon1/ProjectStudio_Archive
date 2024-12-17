@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// AudioManager¸¦ ÀÛµ¿½ÃÅ°´Â Å¬·¡½º
+/// AudioManagerï¿½ï¿½ ï¿½Ûµï¿½ï¿½ï¿½Å°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public class SoundOption : MonoBehaviour
 {

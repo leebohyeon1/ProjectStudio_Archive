@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<AudioClip> _sfxClips;
 
     private List<AudioSource> _sfxSources = new List<AudioSource>();
+    private List<AudioSource> _activeSfxSources = new List<AudioSource>();
+    private Queue<AudioSource> _availableSfxSources = new Queue<AudioSource>();
 
     private Dictionary<string, AudioClip> _bgmDictionary = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> _sfxDictionary = new Dictionary<string, AudioClip>();
@@ -49,6 +51,7 @@ public class AudioManager : MonoBehaviour
             source.priority = 128;
             source.dopplerLevel = 0f;
             _sfxSources.Add(source);
+            _availableSfxSources.Enqueue(source);
         }
     }
 
@@ -116,29 +119,34 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region SFX Methods
-    public void PlaySFX(string clipName, bool isloop = false)
+    public void PlaySFX(string clipName, bool isLoop = false)
     {
-        if (_sfxDictionary.ContainsKey(clipName))
+        if (!_sfxDictionary.TryGetValue(clipName, out AudioClip clip))
         {
-            AudioSource source = _sfxSources[currentSfxIndex];
+            Debug.LogWarning($"SFX 클립 '{clipName}'을(를) 찾을 수 없습니다.");
+            return;
+        }
 
-            if (isloop)
-            {
-                source.clip = _sfxDictionary[clipName];
-                source.loop = true;
-                source.Play();
-            }
-            else
-            {
-                source.PlayOneShot(_sfxDictionary[clipName]);
-            }
+        AudioSource source = GetAvailableSfxSource();
+        _activeSfxSources.Add(source);
 
-            currentSfxIndex = (currentSfxIndex + 1) % _sfxSources.Count; // 다음 인덱스로 이동
+        if (isLoop)
+        {
+            source.clip = clip;
+            source.loop = true;
+            source.Play();
         }
         else
         {
-            Debug.LogWarning($"SFX 클립 '{clipName}'을(를) 찾을 수 없습니다.");
+            source.PlayOneShot(clip);
+            StartCoroutine(ReleaseSfxSourceAfterPlay(source, clip.length));
         }
+    }
+
+    private IEnumerator ReleaseSfxSourceAfterPlay(AudioSource source, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ReleaseSfxSource(source);
     }
 
     public void StopSFX(string clipName)
@@ -252,4 +260,30 @@ public class AudioManager : MonoBehaviour
     }
 
     #endregion
+
+    private AudioSource GetAvailableSfxSource()
+    {
+        AudioSource source;
+        if (_availableSfxSources.Count > 0)
+        {
+            source = _availableSfxSources.Dequeue();
+        }
+        else
+        {
+            source = gameObject.AddComponent<AudioSource>();
+            source.priority = 128;
+            source.dopplerLevel = 0f;
+            _sfxSources.Add(source);
+        }
+        return source;
+    }
+
+    private void ReleaseSfxSource(AudioSource source)
+    {
+        if (_activeSfxSources.Contains(source))
+        {
+            _activeSfxSources.Remove(source);
+            _availableSfxSources.Enqueue(source);
+        }
+    }
 }
