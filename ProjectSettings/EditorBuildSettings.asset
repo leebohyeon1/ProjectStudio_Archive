@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Singleton/00.Scenes/SingletonClass_Test.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/01.Option/00.Scenes/Option_Test.unity
+    guid: 1ad16fc1194a7e448929acaff35994d9
   m_configObjects: {}
